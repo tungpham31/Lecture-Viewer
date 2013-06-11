@@ -5,7 +5,7 @@
 angular.module('lectureApp')
 .controller('MainCtrl', function ($scope, $rootScope) {
 	//declare the popcorn object
-	var $pop = Popcorn("#video");
+	var $pop = Popcorn('#video');
 	$pop.play();
 
 	$scope.showNotes = true;
@@ -58,7 +58,7 @@ angular.module('lectureApp')
 	$scope.logThis = function () {
 		var text = $scope.searchText;
 		$scope.searchText = '';
-		
+
 	};
 
 	//Changes the time of the movie to 200 seconds times the index of the image
@@ -84,7 +84,8 @@ angular.module('lectureApp')
 		var newNote = {
 			'time': Math.floor($pop.currentTime()),
 			'content': $scope.noteInput
-		}
+		};
+
 		$scope.noteInput = '';
 		$scope.notes.push(newNote);
 		$scope.alerts.push({

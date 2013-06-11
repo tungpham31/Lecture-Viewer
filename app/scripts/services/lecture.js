@@ -1,6 +1,7 @@
 'use strict';
 
-//This is the main service for the application. It should be the single source for data, and should serve as the model
+// This is the main service for the application. It should be
+// the single source for data, and should serve as the model
 
 angular.module('lectureApp')
   .factory('lecture', function () {
@@ -26,20 +27,25 @@ angular.module('lectureApp')
           users[user.email] = user;
           return true;
         }
-        else
+        else {
           return false;
+        }
       },
+
       login: function (user, pass) {
         if (users[user] !== undefined && users[user].pass === pass) {
           loggedIn = users[user];
           return true;
         }
-        else
+        else {
           return false;
+        }
       },
+
       logout: function () {
         loggedIn = false;
       },
+
       currentUser: function () {
         return loggedIn;
       }
