@@ -6,6 +6,13 @@
 
 var media = require('../lib/media');
 
+function getConfiguration (req, res) {
+  var config = {
+    mediaDirectory : media.mediaDirectory()
+  };
+  res.json(config);
+}
+
 function getSemesters (req, res) {
   media.getSemesters(function (error, semesters) {
     if (!error) {

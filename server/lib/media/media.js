@@ -5,17 +5,21 @@
  */
 var fs = require('fs');
 
-var SEMESTER_DIR = '/media/';
+var MEDIA_DIR = '/media/';
+
+function mediaDirectory () {
+  return MEDIA_DIR;
+}
 
 /**
  * Invokes the callback on the returned list of semesters.
  * @param cb
  */
 function getSemesters (cb) {
-  fs.readdir(SEMESTER_DIR, function (error, dirs) {
+  fs.readdir(MEDIA_DIR, function (error, dirs) {
     if (error) {
       error = {
-        message : 'Directory does not exist: ' + SEMESTER_DIR
+        message : 'Directory does not exist: ' + MEDIA_DIR
       };
     }
     cb(error, dirs);
@@ -23,5 +27,6 @@ function getSemesters (cb) {
 }
 
 module.exports = {
-  getSemesters : getSemesters
+  mediaDirectory : mediaDirectory,
+  getSemesters   : getSemesters
 };
