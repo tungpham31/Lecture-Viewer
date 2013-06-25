@@ -7,8 +7,10 @@
 var media = require('../lib/media');
 
 function getSemesters (req, res) {
-  media.getSemesters(function (semesters) {
-    res.json(semesters);
+  media.getSemesters(function (error, semesters) {
+    if (!error) {
+      res.json(semesters);
+    }
   });
 }
 
