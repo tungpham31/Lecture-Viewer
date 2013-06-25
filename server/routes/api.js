@@ -24,5 +24,7 @@ function getSemesters (req, res) {
 module.exports = {
   media : {
     getSemesters :  getSemesters
-  }
+  },
+
+  config : getConfiguration
 };
