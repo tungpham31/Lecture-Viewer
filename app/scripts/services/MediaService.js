@@ -11,19 +11,19 @@ angular.module('lectureApp')
     return {
       getSemesters : function () {
                         return $http({
-                          url    : 'media/',
+                          url    : '/api/media/',
                           method : 'GET'
                         });
                       },
       getClasses   : function (semester) {
                         return $http({
-                          url    : 'media/' + semester,
+                          url    : '/api/media/' + semester,
                           method : 'GET'
                         });
                       },
       getClass     : function getClass (semester, klass) {
                         return $http({
-                          url    : 'media/' + semester + '/' + klass,
+                          url    : '/api/media/' + semester + '/' + klass,
                           method : 'GET'
                         });
                       }
