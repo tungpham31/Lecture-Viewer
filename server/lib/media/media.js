@@ -28,7 +28,19 @@ function getSemesters (cb) {
   });
 }
 
+function getClasses (semester, cb) {
+  fs.readdir(MEDIA_DIR + '/' + semester, function (error, dirs) {
+    if (error) {
+      error = {
+        message : 'Directory does not exist: ' + MEDIA_DIR + '/'
+      }
+    }
+    cb(errors, dirs);
+  });
+}
+
 module.exports = {
   mediaDirectory : mediaDirectory,
-  getSemesters   : getSemesters
+  getSemesters   : getSemesters,
+  getClasses     : getClasses
 };

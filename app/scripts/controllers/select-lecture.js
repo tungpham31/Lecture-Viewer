@@ -3,7 +3,7 @@
 //THIS IS THE CONTROLLER FOR THE LECTURE SELECT PAGE/VIEW
 
 angular.module('lectureApp')
-.controller('SelectLectureCtrl', function ($scope, lecture) {
+.controller('SelectLectureCtrl', function ($scope, lecture, MediaService) {
       $scope.currentUser = lecture.currentUser();
 
       //Pagination variables
@@ -19,6 +19,15 @@ angular.module('lectureApp')
       $scope.profMap = {};
       $scope.professors = [];
       //list of lecture objects that will be displayed
+
+      $scope.lectures2 = [];
+
+      var promise = MediaService.getClasses('Su13');
+      promise.success(function (data, status, headers, config) {
+        console.log('success');
+        console.log(data);
+      });
+
       $scope.lectures = [
             {
                   'id': 1,
@@ -238,7 +247,7 @@ angular.module('lectureApp')
             	"professor": 'nother guy',
             	"date": '8/23/2343',
             	'image': 'http://placehold.it/300x200'
-            },
+            }
       ];
 
       //takes a property of a lecture (professor, title) and returns a non-repeating list of it's values for lectures

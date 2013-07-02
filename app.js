@@ -59,6 +59,7 @@ app.get('/', function(req, res){
 // API
 var api = require('./server/routes/api');
 app.get('/api/media' , api.media.getSemesters);
+app.get('/api/media/:semester', api.media.getClasses);
 app.get('/api/config', api.config);
 
 http.createServer(app).listen(app.get('port'), function(){

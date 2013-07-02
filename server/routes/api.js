@@ -18,12 +18,28 @@ function getSemesters (req, res) {
     if (!error) {
       res.json(semesters);
     }
+    else {
+      res.json(error);
+    }
+  });
+}
+
+function getClasses (req, res) {
+  var semester = req.params.semester;
+  media.getClasses(semester, function (error, classes) {
+    if (!error) {
+      res.json(classes);
+    }
+    else {
+      res.json(error);
+    }
   });
 }
 
 module.exports = {
   media : {
-    getSemesters :  getSemesters
+    getSemesters : getSemesters,
+    getClasses   : getClasses
   },
 
   config : getConfiguration
