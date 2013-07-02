@@ -35,7 +35,7 @@ function getClasses (semester, cb) {
         message : 'Directory does not exist: ' + MEDIA_DIR + '/'
       }
     }
-    cb(errors, dirs);
+    cb(error, dirs);
   });
 }
 
