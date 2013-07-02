@@ -3,9 +3,11 @@
  * Date  : 6/25/13
  * Time  : 11:32 AM
  */
-var fs = require('fs');
+var fs     = require('fs');
+var CONFIG = require('config');
 
-var MEDIA_DIR = '/media/';
+// Constants:
+var MEDIA_DIR = CONFIG.Media.root;
 
 function mediaDirectory () {
   return MEDIA_DIR;

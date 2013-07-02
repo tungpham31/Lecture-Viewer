@@ -1,0 +1,10 @@
+{
+  "Media" : {
+    /*
+     * root - where we can find the media (video content). This can
+     * be overridden in the specific ./{host}.json file for the
+     * specific host if necessary.
+     */
+    "root" : "/media/upload"
+  }
+}

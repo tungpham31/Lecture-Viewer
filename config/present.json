@@ -1,0 +1,8 @@
+{
+  "Media" : {
+    /*
+     * host - indicates the host to get media from.
+     */
+    "host" : "present.cs.umass.edu"
+  }
+}
