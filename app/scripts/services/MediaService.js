@@ -6,33 +6,27 @@
  * The recordings service is used to access the server's media directory.
  */
 
-function getSemesters () {
-  return $http({
-    url    : 'media/',
-    method : 'GET'
-  });
-}
-
-function getClasses (semester) {
-  return $http({
-    url    : 'media/' + semester,
-    method : 'GET'
-  });
-}
-
-function getClass (semester, klass) {
-  return $http({
-    url    : 'media/' + semester + '/' + klass,
-    method : 'GET'
-  });
-}
-
 angular.module('lectureApp')
-  .factory('MediaService', function () {
+  .factory('MediaService', function ($http) {
     return {
-      getSemesters : getSemesters,
-      getClasses   : getClasses,
-      getClass     : getClass
+      getSemesters : function () {
+                        return $http({
+                          url    : 'media/',
+                          method : 'GET'
+                        });
+                      },
+      getClasses   : function (semester) {
+                        return $http({
+                          url    : 'media/' + semester,
+                          method : 'GET'
+                        });
+                      },
+      getClass     : function getClass (semester, klass) {
+                        return $http({
+                          url    : 'media/' + semester + '/' + klass,
+                          method : 'GET'
+                        });
+                      }
     };
   });
 
