@@ -5,6 +5,6 @@
      * be overridden in the specific ./{host}.json file for the
      * specific host if necessary.
      */
-    "root" : "/media/upload"
+    "root" : "/media/uploaded"
   }
 }
