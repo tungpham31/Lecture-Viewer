@@ -4,43 +4,46 @@
  * Time  : 11:44 AM
  */
 
-var media = require('../lib/media');
+var media = require('lv-media');
 
-function getConfiguration (req, res) {
+function location (req, res) {
   var config = {
-    mediaDirectory : media.mediaDirectory()
+    mediaDirectory : media.location()
   };
   res.json(config);
 }
 
-function getSemesters (req, res) {
-  media.getSemesters(function (error, semesters) {
-    if (!error) {
-      res.json(semesters);
+function query (req, res) {
+  var qry = {
+    semester : req.params.semester,
+    course   : req.params.course,
+    lecture  : req.params.lecture
+  };
+  media.query(qry, function (error, list) {
+    if (error) {
+      res.json({ error : error });
     }
     else {
-      res.json(error);
+      qry.query = list;
+      res.json(qry);
     }
   });
 }
 
-function getClasses (req, res) {
+function full (req, res) {
   var semester = req.params.semester;
-  media.getClasses(semester, function (error, classes) {
-    if (!error) {
-      res.json(classes);
-    }
-    else {
-      res.json(error);
-    }
-  });
+  var course   = req.params.course;
+  var lecture  = req.params.lecture;
+  // TODO: this will return all the information
+  // about a particular lecture.
 }
+
 
 module.exports = {
   media : {
-    getSemesters : getSemesters,
-    getClasses   : getClasses
+    query : query,
+    full  : full    
   },
 
-  config : getConfiguration
+  config : location
 };

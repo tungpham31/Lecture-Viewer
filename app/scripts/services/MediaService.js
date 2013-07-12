@@ -5,10 +5,29 @@
  *
  * The recordings service is used to access the server's media directory.
  */
+function urlpath (qry) {
+  var path = [
+    qry.semester,
+    qry.course,
+    qry.lecture
+  ];
+  var dir      = '';
+  while (path[0]) {
+    dir += '/' + path.shift();
+  }
+  return dir;
+}
 
 angular.module('lectureApp')
   .factory('MediaService', function ($http) {
     return {
+      query : function (qry) {
+	return $http({
+	  url    : '/api/media' + urlpath(qry),
+	  method : 'GET'
+	});
+      },
+      
       getSemesters : function () {
                         return $http({
                           url    : '/api/media/',

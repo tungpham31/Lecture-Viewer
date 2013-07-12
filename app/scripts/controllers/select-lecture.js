@@ -22,7 +22,9 @@ angular.module('lectureApp')
 
       $scope.lectures2 = [];
 
-      var promise = MediaService.getClasses('Su13');
+      var promise = MediaService.query({ semester : 'F13',
+				         course   : '230',
+				         lecture  : '06-26-2013--10-23-13'});
       promise.success(function (data, status, headers, config) {
         console.log('success');
         console.log(data);
