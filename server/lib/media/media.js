@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Author: Tim Richards
  * Date  : 6/25/13
@@ -77,8 +79,8 @@ function query (qry, cb) {
     }
     else {
       var result = {
-	url   : urlpath(qry),
-	files : list
+        url   : urlpath(qry),
+        files : list
       };
       cb(undefined, result);
     }
@@ -109,28 +111,27 @@ function video (qry, cb) {
     cb('query requires semester, course, and lecture');
   }
   else {
-     var path  = mkpath(qry);
-     fs.readdir(path, function (error, list) {
-       if (error) {
-	 cb(path + ' does not exist');
-       }
-       else {
-	 var video = {
-	   semester : qry.semester,
-	   course   : qry.course,
-	   lecture  : qry.lecture,
-	   files    : []
-	 };
-	 // Supported video formats:
-	 var format = /.*\.(mp4|ogg|webm)$/;
-	 for (var i = 0; i < list.length; i++) {
-	   if (format.exec(list[i])) {
-	     video.files.push(list[i]);
-	   }
-	 }
-	 cb(undefined, video);
-       }
-     });
+    var path = mkpath(qry);
+    fs.readdir(path, function(error, list) {
+      if (error) {
+        cb(path + ' does not exist');
+      } else {
+        var video = {
+          semester: qry.semester,
+          course: qry.course,
+          lecture: qry.lecture,
+          files: []
+        };
+        // Supported video formats:
+        var format = /.*\.(mp4|ogg|webm)$/;
+        for (var i = 0; i < list.length; i++) {
+          if (format.exec(list[i])) {
+            video.files.push(list[i]);
+          }
+        }
+        cb(undefined, video);
+      }
+    });
   }
 }
 
@@ -141,28 +142,27 @@ function screen (qry, cb) {
     cb('query requires semester, course, and lecture');
   }
   else {
-     var path  = mkpath(qry) + '/screen';
-     fs.readdir(path, function (error, list) {
-       if (error) {
-	 cb(path + ' does not exist');
-       }
-       else {
-	 var screen = {
-	   semester : qry.semester,
-	   course   : qry.course,
-	   lecture  : qry.lecture,
-	   files    : []
-	 };
-	 // Supported screen formats:
-	 var format = /.*\.(png)$/;
-	 for (var i = 0; i < list.length; i++) {
-	   if (format.exec(list[i])) {
-	     screen.files.push(list[i]);
-	   }
-	 }
-	 cb(undefined, screen);
-       }
-     });
+    var path = mkpath(qry) + '/screen';
+    fs.readdir(path, function(error, list) {
+      if (error) {
+        cb(path + ' does not exist');
+      } else {
+        var screen = {
+          semester: qry.semester,
+          course: qry.course,
+          lecture: qry.lecture,
+          files: []
+        };
+        // Supported screen formats:
+        var format = /.*\.(png)$/;
+        for (var i = 0; i < list.length; i++) {
+          if (format.exec(list[i])) {
+            screen.files.push(list[i]);
+          }
+        }
+        cb(undefined, screen);
+      }
+    });
   }
 }
 
@@ -173,28 +173,27 @@ function whiteboard (qry, cb) {
     cb('query requires semester, course, and lecture');
   }
   else {
-     var path  = mkpath(qry) + '/whiteboard';
-     fs.readdir(path, function (error, list) {
-       if (error) {
-	 cb(path + ' does not exist');
-       }
-       else {
-	 var whiteboard = {
-	   semester : qry.semester,
-	   course   : qry.course,
-	   lecture  : qry.lecture,
-	   files    : []
-	 };
-	 // Supported whiteboard formats:
-	 var format = /.*\.(png)$/;
-	 for (var i = 0; i < list.length; i++) {
-	   if (format.exec(list[i])) {
-	     whiteboard.files.push(list[i]);
-	   }
-	 }
-	 cb(undefined, whiteboard);
-       }
-     });
+    var path = mkpath(qry) + '/whiteboard';
+    fs.readdir(path, function(error, list) {
+      if (error) {
+        cb(path + ' does not exist');
+      } else {
+        var whiteboard = {
+          semester: qry.semester,
+          course: qry.course,
+          lecture: qry.lecture,
+          files: []
+        };
+        // Supported whiteboard formats:
+        var format = /.*\.(png)$/;
+        for (var i = 0; i < list.length; i++) {
+          if (format.exec(list[i])) {
+            whiteboard.files.push(list[i]);
+          }
+        }
+        cb(undefined, whiteboard);
+      }
+    });
   }
 }
 
@@ -207,29 +206,27 @@ function full(qry, cb) {
   else {
     video(qry, function (error, v) {
       if (error) {
-	cb(error);
+        cb(error);
       }
       else {
-	screen(qry, function (error, s) {
-	  if (error) {
-	    cb(error);
-	  }
-	  else {
-	    whiteboard(qry, function (error, w) {
-	      if (error) {
-		cb(error);
-	      }
-	      else {
-		var full = {
-		  video      : v,
-		  screen     : s,
-		  whiteboard : w
-		};
-		cb(undefined, full);
-	      }
-	    });
-	  }
-	});
+        screen(qry, function(error, s) {
+          if (error) {
+            cb(error);
+          } else {
+            whiteboard(qry, function(error, w) {
+              if (error) {
+                cb(error);
+              } else {
+                var full = {
+                  video: v,
+                  screen: s,
+                  whiteboard: w
+                };
+                cb(undefined, full);
+              }
+            });
+          }
+        });
       }
     });
   }
