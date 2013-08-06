@@ -7,6 +7,7 @@
  */
 var fs     = require('fs');
 var CONFIG = require('config');
+var Q      = require('q');
 
 // Constants:
 var MEDIA_DIR = CONFIG.Media.root;
@@ -232,6 +233,69 @@ function full(qry, cb) {
   }
 }
 
+function all() {
+  function getSemesters() {
+    var defer = Q.defer();
+    query({}, function (err, semesters) {
+      if (err) {
+        defer.reject(err);
+      }
+      else {
+        defer.resolve(semesters);
+      }
+    });
+    return defer.promise;
+  }
+
+  function getCourses(semesters) {
+    var results = [];
+    for (var i = 0; i < semesters.files.length; i++) {
+      (function () {
+        var semester = semesters.files[i];
+        var defer    = Q.defer();
+        query({ semester : semester },
+          function (err, courses) {
+            if (err) {
+              defer.reject(err);
+            }
+            else {
+              var courselist = [];
+              for (var i = 0; i < courses.files.length; i++) {
+                courselist.push({
+                  name : courses.files[i]
+                });
+              }
+              var result = {
+                semester : semester,
+                courses  : courselist
+              };
+              defer.resolve(result);
+            }
+          });
+        results.push(defer.promise);
+      })();
+    }
+    return Q.all(results);
+  }
+
+  function getClasses(list) {
+
+  }
+
+getSemesters()
+          .then(function (results) {
+            console.log(results);
+            return getCourses(results);
+          })
+          .then(function (results) {
+            for (var i = 0; i < results.length; i++) {
+              console.log(results[i]);
+            }
+          });
+
+  return 1;
+}
+
 // Exported object:
 module.exports = {
   query      : query,
@@ -239,5 +303,6 @@ module.exports = {
   screen     : screen,
   whiteboard : whiteboard,
   full       : full,
-  location   : location
+  location   : location,
+  all        : all
 };

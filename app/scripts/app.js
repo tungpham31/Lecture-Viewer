@@ -9,6 +9,10 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
         templateUrl: 'views/splash.html',
         controller: 'SelectLectureCtrl'
       })
+      .when('/register/', {
+	templateUrl: 'views/register.html',
+	controller:  'RegisterCtrl'
+      })
       .when('/watch/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'

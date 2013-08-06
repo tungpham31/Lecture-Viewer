@@ -1,0 +1,52 @@
+<div class="span8">
+  <div class="hero-unit">
+    <h2>Course Registration</h2>
+    <hr>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Quisque ullamcorper luctus bibendum. Aliquam adipiscing
+      turpis non massa tempor ac cursus lacus aliquet.</p>
+    <hr>
+  </div>
+</div>
+<div class="span3 offset1 well">
+  <!-- <div ng-show="currentUser"> -->
+  <!--   <span class="text-info">Logged in as:</span> -->
+  <!--   <p class="lead">{{currentUser.email}}<p> -->
+  <!--     <hr> -->
+  <!--     <button ng-click="logout()" class="btn btn-primary">Logout</button> -->
+  <!-- </div> -->
+  <form>
+    <legend>Register</legend>
+    <fieldset>
+      Semester:
+      <div class="control-group">
+	<select name="semester"
+		ng-model="semester"
+		ng-change="getCourses()"
+		ng-options="s.name for s in semesters" required>
+	  <option value=""></option>
+	</select>
+      </div>
+
+      Course:
+      <div class="control-group">
+	<select ng-name="course"
+		ng-model="course"
+		ng-change="showCourse()"
+		ng-options="c.name for c in courses" required>
+	  <option value=""></option>
+	</select>
+      </div>
+
+      Email:
+      <div class="control-group">
+  	<input ng-model="email" type="email" placeholder="Email" required>
+      </div>
+
+      <div class="control-group">
+  	<button ng-click="register()"
+		type="submit" class="btn btn-primary">Register</button>
+      </div>      
+    </fieldset>
+  </form>
+</div>

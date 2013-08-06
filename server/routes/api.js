@@ -4,7 +4,7 @@
  * Time  : 11:44 AM
  */
 
-var media = require('lv-media');
+var media = require('media');
 
 function location (req, res) {
   var config = {

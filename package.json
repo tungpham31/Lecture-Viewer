@@ -8,7 +8,10 @@
     "ejs": "~0.8.3",
     "connect-redis": "~1.4.5",
     "mongoose": "~3.6.11",
-    "config": "~0.4.27"
+    "config": "~0.4.27",
+    "async": "~0.2.9",
+    "q": "~0.9.6",
+    "csv": "~0.3.5"
   },
   "devDependencies": {
     "grunt": "0.4.0rc7",

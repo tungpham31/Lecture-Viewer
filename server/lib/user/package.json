@@ -1,0 +1,12 @@
+{
+  "name": "lv-user",
+  "version": "0.0.1",
+  "description": "Access to user information",
+  "main": "user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Tim Richards",
+  "license": "BSD"
+}

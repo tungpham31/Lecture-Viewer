@@ -6,5 +6,14 @@
      * specific host if necessary.
      */
     "root" : "/media/uploaded"
+  },
+
+  "User" : {
+    /*
+     * root - where we can find the user information. This can be
+     * overridded in the specific ./{host}.json file for the
+     * specific host if necessary.
+     */
+    "root" : "./users"
   }
 }

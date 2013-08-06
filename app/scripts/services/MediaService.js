@@ -30,7 +30,7 @@ angular.module('lectureApp')
       
       getSemesters : function () {
                         return $http({
-                          url    : '/api/media/',
+                          url    : '/api/media/semesters/',
                           method : 'GET'
                         });
                       },

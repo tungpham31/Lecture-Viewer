@@ -58,6 +58,7 @@ app.get('/', function(req, res){
 
 // API
 var api = require('./server/routes/api');
+app.get('/api/media/semesters', api.media.query);
 app.get('/api/media/:semester', api.media.query);
 app.get('/api/media/:semester/:course', api.media.query);
 app.get('/api/media/:semester/:course/:lecture', api.media.query);
