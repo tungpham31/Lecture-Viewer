@@ -4,7 +4,7 @@
 // the single source for data, and should serve as the model
 
 angular.module('lectureApp')
-  .factory('lecture', function () {
+  .factory('lecture', function ($http) {
     var loggedIn = false;
 
     var users = {

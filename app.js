@@ -6,9 +6,20 @@
 
 //This is a very basic node server meant to server index.html and resources and little else
 
-var express = require('express')
-  , http = require('http')
-  , path = require('path');
+var express = require('express');
+var http    = require('http');
+var https   = require('https');
+var path    = require('path');
+var CONFIG  = require('config');
+var fs      = require('fs');
+
+// Read in SSL certificates:
+var privateKey  = fs.readFileSync(CONFIG.SSL.root + '/ssl.key');
+var certificate = fs.readFileSync(CONFIG.SSL.root + '/ssl.crt');
+var SSLOptions  = {
+  key  : privateKey,
+  cert : certificate
+};
 
 var app = express();
 
@@ -66,6 +77,10 @@ app.get('/api/media/:semester/:course/:lecture', api.media.query);
 // API For PAOL Processing
 app.get('/api/config', api.config);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+https.createServer(SSLOptions, app).listen(app.get('port'));
+
+// configure this to redirect http requests to https. Two ways:
+//  1. do it in node and redirect to https URL
+//  2. use IP tables (probably better)
+//
+// http.createServer(app).listen(app.get('port'));

@@ -15,5 +15,9 @@
      * specific host if necessary.
      */
     "root" : "./users"
+  },
+
+  "SSL" : {
+    "root" : "./ssl"
   }
 }
