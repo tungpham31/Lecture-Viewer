@@ -1,25 +1,30 @@
 'use strict';
 
+var Q        = require('q');
 var mongoose = require('mongoose');
 
 // User Schema
 var UserSchema = mongoose.Schema({
-  fname: String,
-  lname: String,
   email: String,
   pass : String,
   role : String
 });
 
 // Define some useful methods
-UserSchema.methods.fullName = function () {
-  return this.fname + ' ' + this.lname;
+UserSchema.methods.toString = function () {
+  return '<' + this.email + '>';
 };
 
-UserSchema.methods.toString = function () {
-  return this.fname + ' ' +
-         this.lname + ' <' +
-         this.email + '>';
+UserSchema.methods.setRole = function (role) {
+  var deferred = Q.defer();
+  this.role = role;
+  this.save(function (err) {
+    if (err)
+      deferred.reject(err);
+    else
+      deferred.resolve(true);
+  });
+  return deferred.promise;
 };
 
 // Create the model:
