@@ -26,7 +26,12 @@
 	<input ng-model="password" type="password" placeholder="Password" required>
       </div>
       <div class="control-group">
-	<button ng-click="login()" type="submit" class="btn btn-primary">Sign In</button>
+	<label class="checkbox">
+	  <input ng-model="newUser" type="checkbox"> New user
+	</label>
+      </div>
+      <div class="control-group">
+        <button ng-click="login()" class="btn btn-primary">Sign In</button>
       </div>
     </fieldset>
   </form>

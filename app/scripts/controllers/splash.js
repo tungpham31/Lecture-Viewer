@@ -8,8 +8,14 @@ angular.module('lectureApp')
     $scope.email = '';
     $scope.password = '';
     $scope.currentUser = lecture.currentUser();
-
+    
     $scope.login = function () {
+      if ($scope.newUser) {
+	lecture.addUser({ email    : $scope.email,
+			  password : $scope.password });
+	
+      }
+
       if (lecture.login($scope.email, $scope.password)) {
         $scope.errorText = '';
         $location.path('/lectures');

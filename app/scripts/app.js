@@ -7,7 +7,7 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
     $routeProvider
       .when('/', {
         templateUrl: 'views/splash.html',
-        controller: 'SelectLectureCtrl'
+        controller: 'SplashCtrl'
       })
       .when('/register/', {
 	templateUrl: 'views/register.html',

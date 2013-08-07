@@ -33,7 +33,7 @@ angular.module('lectureApp')
       },
 
       login: function (user, pass) {
-        if (users[user] !== undefined && users[user].pass === pass) {
+        if (users[user] !== undefined && users[user].password === pass) {
           loggedIn = users[user];
           return true;
         }
