@@ -73,6 +73,10 @@ app.get('/api/media/semesters', api.media.query);
 app.get('/api/media/:semester', api.media.query);
 app.get('/api/media/:semester/:course', api.media.query);
 app.get('/api/media/:semester/:course/:lecture', api.media.query);
+app.post('/auth/login', api.auth.login);
+app.get('/auth/logout', api.auth.logout);
+app.post('/auth/create', api.auth.create);
+app.get('/auth/current', api.auth.current);
 
 // API For PAOL Processing
 app.get('/api/config', api.config);

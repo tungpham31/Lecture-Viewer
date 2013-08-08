@@ -10,24 +10,38 @@ angular.module('lectureApp')
     $scope.currentUser = lecture.currentUser();
     
     $scope.login = function () {
-      if ($scope.newUser) {
-	lecture.addUser({ email    : $scope.email,
-			  password : $scope.password });
-	
-      }
+      var email   = $scope.email;
+      var pass    = $scope.password;
+      var create  = $scope.newUser;
+      var promise = undefined;
 
-      if (lecture.login($scope.email, $scope.password)) {
-        $scope.errorText = '';
-        $location.path('/lectures');
+      if (create) {
+      	promise = lecture.addUser(email, pass);
       }
       else {
-        $scope.errorText = 'The email or password seems to be incorrect.';
+	promise = lecture.login(email, pass);
       }
+      
+      promise.then(
+	function (data) {
+	  $scope.errorText = '';
+	  $scope.currentUser = lecture.currentUser();	  
+          $location.path('/lectures');
+	},
+	function (data) {
+	  $scope.errorText = data;
+	});
     };
 
     $scope.logout = function () {
-      lecture.logout();
-      $scope.currentUser = lecture.currentUser();
+      var promise = lecture.logout();
+      promise.then(
+	function () {
+	  $scope.currentUser = lecture.currentUser();
+	},
+	function () {
+	  $scope.currentUser = lecture.currentUser();
+	});
     };
 
   });

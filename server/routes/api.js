@@ -5,6 +5,7 @@
  */
 
 var media = require('media');
+var auth  = require('auth');
 
 function location (req, res) {
   var config = {
@@ -30,20 +31,81 @@ function query (req, res) {
   });
 }
 
-function full (req, res) {
-  var semester = req.params.semester;
-  var course   = req.params.course;
-  var lecture  = req.params.lecture;
-  // TODO: this will return all the information
-  // about a particular lecture.
+function login (req, res) {
+  // Check if the user is already logged in:
+  if (req.session.user) {
+    res.json({ status  : 'AUTHENTICATED',
+	       user    : req.session.user,
+	       message : 'Authentication was successful' });    
+  }
+  else {
+    var email = req.body.email;
+    var pass  = req.body.pass;
+    auth.auth(email, pass)
+      .then(function (user) {
+	req.session.user = user;
+	res.json({ status  : 'AUTHENTICATED',
+		   user    : user,
+		   message : 'Authentication was successful' });
+      })
+      .fail(function (error) {
+	res.json(error);
+      });
+  }
 }
 
+function create (req, res) {
+  // Check if the user is already logged in:
+  if (req.session.user) {
+    res.json({ status  : 'AUTHENTICATED',
+	       user    : req.session.user,
+	       message : 'Authentication was successful' });    
+  }
+  else {  
+    var email = req.body.email;
+    var pass  = req.body.pass;
+    auth.add(email, pass)
+      .then(function (user) {
+	req.session.user = user;
+	res.json({ status  : 'AUTHENTICATED',
+		   user    : user,
+		   message : 'Authentication was successful' });      
+      })
+      .fail(function (error) {
+	res.json(error);
+      });
+  }
+}
+
+function current (req, res) {
+  // Check if the user is already logged in:
+  if (req.session.user) {
+    res.json({ status  : 'AUTHENTICATED',
+	       user    : req.session.user,
+	       message : 'Authentication was successful' });    
+  }
+  else {
+    res.json({ status  : 'LOGGEDOUT',
+	       message : 'Not logged in' });
+  }
+}
+
+function logout (req, res) {
+  req.session.destroy();
+  res.json({ status : 'LOGOUT' });
+}
 
 module.exports = {
   media : {
-    query : query,
-    full  : full    
+    query : query
   },
 
+  auth : {
+    login   : login,
+    logout  : logout,
+    create  : create,
+    current : current
+  },
+  
   config : location
 };
