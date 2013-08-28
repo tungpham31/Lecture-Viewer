@@ -10,8 +10,8 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
         controller: 'SplashCtrl'
       })
       .when('/register/', {
-	templateUrl: 'views/register.html',
-	controller:  'RegisterCtrl'
+	       templateUrl: 'views/register.html',
+	       controller:  'RegisterCtrl'
       })
       .when('/watch/', {
         templateUrl: 'views/main.html',
@@ -28,6 +28,10 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
       .when('/splash', {
         templateUrl: 'views/splash.html',
         controller: 'SplashCtrl'
+      })
+      .when('/course-list', {
+        templateUrl: 'views/ListCourses.html',
+        controller: 'ListCoursesCtrl'
       })
       .otherwise({
         redirectTo: '/'

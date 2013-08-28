@@ -1,0 +1,60 @@
+
+<!-- Perhaps we can add this in the future, keep it simple for now. -->
+<!-- <div class="span4 well">
+	<p class="lead">Search for a lecture:</p>
+	<input ng-model="lectureSearch" type="text" placeholder="Type anything...">
+</div> -->
+<div class="span6 well">
+	<p class="lead">Search for a lecture:</p>
+	<form class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label">Semester</label>
+			<div class="controls">
+				<input type="text" ng-model="semesterSearch" typeahead="semester for semester in semesters | filter:$viewValue">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Course</label>
+			<div class="controls">
+				<input type="text" ng-model="classSearch" typeahead="class for class in classes | filter:$viewValue">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Date</label>
+			<div class="controls">
+				<input type="text" ng-model="dateSearch" typeahead="date for date in dates | filter:$viewValue">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Professor</label>
+			<div class="controls">
+				<input type="text" ng-model="professorSearch" typeahead="prof for prof in professors | filter:$viewValue">
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<!--pagination num-pages="numberOfPages()" current-page="currentPage"></pagination-->
+<div class="span12">
+	<h4 class="center">Click a lecture to watch</h4>
+	<ul class="thumbnails">
+	  <li ng-repeat="lecture in lectures | filter:semesterSearch | filter:lectureSearch | filter:professorSearch | filter:classSearch | filter:dateSearch | classes:currentUser.classes" class="span4">
+	    <div class="thumbnail">
+	      <a href="#/watch/{{lecture.id}}">
+	      	<img src="{{lecture.image}}">
+	      </a>
+	      <div class="caption">
+	      	<strong>Semester:</strong> {{lecture.semester}} <br>
+	      	<strong>Course:</strong> {{lecture.course}} <br>
+	      	<strong>Date:</strong> {{lecture.date}} <br>
+	      	<!-- Add this when we have the instructor name. -->
+	      	<!-- <strong>Instructor:</strong> {{lecture.instructor}} <br> -->
+	      </div>
+	    </div>
+	  </li>
+	</ul>
+</div>

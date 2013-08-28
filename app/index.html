@@ -22,7 +22,7 @@
       <script src="components/es5-shim/es5-shim.js"></script>
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
-    
+
     <!-- Add your site or application content here -->
     <div ng-controller="NavCtrl" class="navbar navbar-fixed-top" style="position: absolute;">
     <div class="navbar-inner">
@@ -34,8 +34,11 @@
 	       how to initialize a scope variable properly. See Nav.js for
 	       more notes. -->
 	  <li ng-show="currentUser"><a href="#/register">Register</a></li>
-          <li ng-show="currentUser"><a href="#/lectures">Find</a></li>
+          <li ng-show="currentUser"><a href="#/course-list">Find</a></li>
+          <!-- Add this when we save the currently viewed lecture. -->
+          <!--
           <li ng-show="currentUser"><a href="#/watch">Watch</a></li>
+          -->
         </ul>
         <ul class="nav pull-right"
 	    style="margin-top: 10px;"
@@ -66,10 +69,11 @@
     <script src="scripts/services/lecture.js"></script>
     <script src="scripts/services/MediaService.js"></script>
     <script src="scripts/controllers/Nav.js"></script>
-    <script src="scripts/controllers/register.js"></script>        
+    <script src="scripts/controllers/register.js"></script>
     <script src="scripts/filters/classes.js"></script>
+    <script src="scripts/controllers/ListCoursesCtrl.js"></script>
     <!-- endbuild -->
-    
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
