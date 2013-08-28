@@ -78,6 +78,10 @@ app.get('/auth/logout', api.auth.logout);
 app.post('/auth/create', api.auth.create);
 app.get('/auth/current', api.auth.current);
 
+// API for User Information
+var user_api = require('./server/routes/api-user');
+app.get('/user/course-list', user_api.getCourseList);
+
 // API For PAOL Processing
 app.get('/api/config', api.config);
 

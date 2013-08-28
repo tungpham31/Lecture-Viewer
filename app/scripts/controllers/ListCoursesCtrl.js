@@ -1,12 +1,11 @@
 'use strict';
 
-//THIS IS THE CONTROLLER FOR THE LECTURE SELECT PAGE/VIEW
-
 angular.module('lectureApp')
   .controller('ListCoursesCtrl', function($scope, lecture, MediaService) {
     $scope.currentUser = lecture.currentUser();
 
     //Pagination variables
+    // TODO: What is this for?
     $scope.pageSize = 6;
     $scope.numberOfPages = function() {
       return Math.ceil($scope.lectures.length / $scope.pageSize);
@@ -20,37 +19,33 @@ angular.module('lectureApp')
     $scope.professors = [];
     //list of lecture objects that will be displayed
 
-    $scope.lectures2 = [];
     $scope.lectures = [];
 
-    var promise = MediaService.query({
-      semester: 'F13',
-      course: '230'
-      // lecture: '06-26-2013--10-23-13'
-    });
+    var promise = MediaService.getCourseList();
 
     promise.success(function(data, status) {
-      console.log(status);
-      console.log('success');
-      $scope.lectures = [];
-      var files = data.query.files;
-      console.log(data.query);
-      for (var i = 0; i < files.length; i++) {
-        var details   = data.query.url.split('/');
-        var semester  = details[1];
-        var course    = details[2];
-        var date      = files[i].split('--');
-        var day       = new Date(date[0]);
-        var time      = date[1].replace(/-/g,':');
-        $scope.lectures.push({
-          'id' : i,
-          'title' : files[i],
-          'semester' : semester,
-          'course' : course,
-          'instructor' : 'INSTRUCTORNAME?',
-          'date' : day.toDateString() + ' - ' + time,
-          'image': 'http://placehold.it/300x200'
-        });
+      for (var j = 0; j < data.length; j++) {
+	console.log(status);
+	console.log('success');
+	$scope.lectures = [];
+	var files = data[j].files;
+	for (var i = 0; i < files.length; i++) {
+          var details   = data[j].url.split('/');
+          var semester  = details[1];
+          var course    = details[2];
+          var date      = files[i].split('--');
+          var day       = new Date(date[0]);
+          var time      = date[1].replace(/-/g,':');
+          $scope.lectures.push({
+            'id' : i,
+            'title' : files[i],
+            'semester' : semester,
+            'course' : course,
+            'instructor' : 'INSTRUCTORNAME?',
+            'date' : day.toDateString() + ' - ' + time,
+            'image': 'http://placehold.it/300x200'
+          });
+	}
       }
       console.log($scope.lectures);
 

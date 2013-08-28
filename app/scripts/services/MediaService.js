@@ -27,6 +27,13 @@ angular.module('lectureApp')
 	  method : 'GET'
 	});
       },
+
+      getCourseList : function () {
+                        return $http({
+                          url    : '/user/course-list/',
+                          method : 'GET'
+                        });
+                      },
       
       getSemesters : function () {
                         return $http({
