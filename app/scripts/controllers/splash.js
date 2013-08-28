@@ -19,29 +19,29 @@ angular.module('lectureApp')
       	promise = lecture.addUser(email, pass);
       }
       else {
-	promise = lecture.login(email, pass);
+		promise = lecture.login(email, pass);
       }
       
       promise.then(
-	function (data) {
-	  $scope.errorText = '';
-	  $scope.currentUser = lecture.currentUser();	  
-          $location.path('/lectures');
-	},
-	function (data) {
-	  $scope.errorText = data;
-	});
-    };
+		function (data) {
+		  $scope.errorText = '';
+		  $scope.currentUser = lecture.currentUser();	  
+			  $location.path('/lectures');
+		},
+		function (data) {
+		  $scope.errorText = data;
+		});
+	};
 
     $scope.logout = function () {
       var promise = lecture.logout();
       promise.then(
-	function () {
-	  $scope.currentUser = lecture.currentUser();
-	},
-	function () {
-	  $scope.currentUser = lecture.currentUser();
-	});
+		function () {
+		  $scope.currentUser = lecture.currentUser();
+		},
+		function () {
+		  $scope.currentUser = lecture.currentUser();
+		});
     };
 
   });
