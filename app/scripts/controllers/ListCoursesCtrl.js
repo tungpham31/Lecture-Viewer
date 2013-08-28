@@ -21,6 +21,10 @@ angular.module('lectureApp')
 
     $scope.lectures = [];
 
+    $scope.isRegistered = function () {
+	return $scope.lectures.length !== 0;
+    };
+
     var promise = MediaService.getCourseList();
 
     promise.success(function(data, status) {
