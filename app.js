@@ -77,6 +77,7 @@ app.post('/auth/login', api.auth.login);
 app.get('/auth/logout', api.auth.logout);
 app.post('/auth/create', api.auth.create);
 app.get('/auth/current', api.auth.current);
+app.post('/register', api.register.nregister);
 
 // API for User Information
 var user_api = require('./server/routes/api-user');

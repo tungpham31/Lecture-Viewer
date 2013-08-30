@@ -1,12 +1,12 @@
 {
   "name": "register",
   "version": "0.0.1",
-  "description": "User Registration",
+  "description": "Course registration",
   "main": "register.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",
-  "author": "Tim Richards",
+  "author": "Rae Recto",
   "license": "BSD"
 }

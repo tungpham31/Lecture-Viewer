@@ -38,10 +38,9 @@ angular.module('lectureApp')
       promise.then(
         function () {
           $scope.currentUser = lecture.currentUser();
-      },
-      function () {
-        $scope.currentUser = lecture.currentUser();
-      });
+	},
+	function () {
+          $scope.currentUser = lecture.currentUser();
+	});
   };
-
 });

@@ -98,7 +98,7 @@ UserSchema.methods.getCourseList = function () {
     (function (deferred) {
       media.query(query, function (error, list) {
 	if (error) {
-	  deferred.reject(err);
+	  deferred.reject(error);
 	}
 	else {
 	  deferred.resolve(list);
