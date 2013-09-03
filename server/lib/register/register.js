@@ -1,17 +1,24 @@
 'use strict';
 
 var Q    = require('q');
+var Roster = require('models').Roster;
 var User = require('models').User;
 
 // Checks the user against the roster for a course.
-function checkUserRegistration(user, semester, course) {
-
+function checkUserRegistration(email, semester, course) {
+    //var deferred = Q.defer();
+    return Roster.checkRoster(semester, course, email);
+    //need the username so that can add course
 }
 
 // Registers a user with a course.
 function registerUser(user, semester, course) {
-
+    //coming from roster so reading from csv file then creating new Roster?
+    //or adding this course to user?
 }
+
+exports.checkUserRegistration = checkUserRegistration;
+
 
 function Roster(semester, course, email) {
 	this.semester = semester;
