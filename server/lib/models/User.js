@@ -10,6 +10,10 @@ var UserSchema = mongoose.Schema({
   email   : String,
   pass    : String,
   role    : String,
+  // Demographic information:
+  gender  : String,
+  race    : String,
+  level   : String,
   // The list of courses a user is registered for:
   courses : [{ semester : String,
 	       course   : String }]
