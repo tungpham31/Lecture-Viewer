@@ -2,9 +2,10 @@
   <div class="hero-unit">
     <h1>Lecture Viewer</h1>
     <hr>
+<<<<<<< HEAD
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Quisque ullamcorper luctus bibendum. Aliquam adipiscing
-      turpis non massa tempor ac cursus lacus aliquet. {{changingPassword}}</p>
+      turpis non massa tempor ac cursus lacus aliquet.</p>
     <hr>
   </div>
 </div>
@@ -31,23 +32,23 @@
   </form>
 
   <div ng-show="currentUser && !changingPassword">
-      <span class="text-info">Logged in as:</span>
-      <p class="lead">{{currentUser}}<p>
-      <a ng-click="changePassword()">Change password</a>
-        <hr>
-        <button ng-click="logout()" class="btn btn-primary">Logout</button>
+    <span class="text-info">Logged in as:</span>
+    <p class="lead">{{currentUser}}<p>
+    <a ng-click="changePassword()">Change password</a>
+      <hr>
+      <button ng-click="logout()" class="btn btn-primary">Logout</button>
   </div>
 
-   <form ng-show="currentUser && changingPassword" class="form-horizontal">
-      <fieldset>
-        <legend>Change Password</legend>
-        <p class="text-error">{{errorText}}</p>
-        <div class="control-group">
-	  <input ng-model="password" type="password" placeholder="Password" required>
-        </div>
-        <div class="control-group">
-          <button ng-click="completeChangingPassword()" class="btn btn-primary">Confirm</button>
-        </div>
-      </fieldset>
-    </form>
+  <form ng-show="currentUser && changingPassword" class="form-horizontal">
+    <fieldset>
+      <legend>Change Password</legend>
+      <p class="text-error">{{errorText}}</p>
+      <div class="control-group">
+	<input ng-model="password" type="password" placeholder="Password" required>
+      </div>
+      <div class="control-group">
+        <button ng-click="completeChangingPassword()" class="btn btn-primary">Confirm</button>
+      </div>
+    </fieldset>
+  </form>
 </div>

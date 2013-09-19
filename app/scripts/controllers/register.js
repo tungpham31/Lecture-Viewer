@@ -3,7 +3,7 @@
 //THIS IS THE CONTROLLER FOR THE LECTURE SELECT PAGE/VIEW
 
 angular.module('lectureApp')
-  .controller('RegisterCtrl', function($scope, lecture, MediaService) {
+  .controller('RegisterCtrl', function($scope, $location, lecture, MediaService) {
     $scope.semesters = [];
     $scope.courses   = [];
     $scope.semester  = '';
@@ -13,10 +13,11 @@ angular.module('lectureApp')
     var promise = MediaService.getSemesters();
     
     promise.then(function(data, status) {
+      console.log(data);
       var files = data.data.query.files;
       $scope.semesters = [];
       for (var i = 0; i < files.length; i++) {
-	$scope.semesters.push({ name : files[i] });
+		$scope.semesters.push({ name : files[i] });
       }
     });
 
@@ -35,5 +36,27 @@ angular.module('lectureApp')
     $scope.showCourse = function () {
       console.log($scope.course);
     };
+	
+	$scope.register = function () {
+		//register for course
+		//(1) check if email is in roster
+		//if yes, register
+		//if not, error - ask to check email and details
+		var semester = $scope.semester.name;
+		var course = $scope.course.name;
+		var email = $scope.email;
+		var promise = lecture.register(semester, course, email);
+		promise.then(
+			function(data) {
+				$scope.errorText = '';
+				//need currentUser - always displayed
+				//$scope.currentUser = lecture.currentUser();
+				$location.path('/course-list');
+			},
+			function(data) {
+				$scope.errorText = data;
+			}
+		);
+	};
     
   });

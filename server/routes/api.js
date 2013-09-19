@@ -6,6 +6,7 @@
 
 var media = require('media');
 var auth  = require('auth');
+var register = require('register');
 
 function location (req, res) {
   var config = {
@@ -95,6 +96,16 @@ function logout (req, res) {
   res.json({ status : 'LOGOUT' });
 }
 
+function nregister (req, res) {
+	register.nregister(req.body.semester, req.body.course, req.body.email)
+		.then(function (data) {
+			res.json(data);
+		})
+		.fail(function (error) {
+			res.json(error);
+		});
+}
+
 module.exports = {
   media : {
     query : query
@@ -107,5 +118,9 @@ module.exports = {
     current : current
   },
   
-  config : location
+  config : location,
+  
+  register : {
+	nregister : nregister
+  }
 };

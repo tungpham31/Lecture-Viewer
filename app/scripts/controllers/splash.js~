@@ -39,12 +39,12 @@ angular.module('lectureApp')
       promise.then(
         function () {
           $scope.currentUser = lecture.currentUser();
-   	  $scope.loggedInView = false;
-      },
-      function () {
-        $scope.currentUser = lecture.currentUser();
-      });
+	},
+	function () {
+          $scope.currentUser = lecture.currentUser();
+	});
   };
+<<<<<<< HEAD
 
   $scope.changePassword = function () {
     $scope.changingPassword = true;
@@ -56,4 +56,6 @@ angular.module('lectureApp')
     // add more logic later.
   };
 
+=======
+>>>>>>> 18386835772070faededafed496d48ed344671be
 });

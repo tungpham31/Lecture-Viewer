@@ -39,10 +39,10 @@ angular.module('lectureApp')
       promise.then(
         function () {
           $scope.currentUser = lecture.currentUser();
-      },
-      function () {
-        $scope.currentUser = lecture.currentUser();
-      });
+	},
+	function () {
+          $scope.currentUser = lecture.currentUser();
+	});
   };
 
   $scope.changePassword = function () {
@@ -54,5 +54,4 @@ angular.module('lectureApp')
     $scope.pass = '';
     // add more logic later.
   };
-
 });
