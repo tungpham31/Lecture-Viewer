@@ -39,6 +39,7 @@ angular.module('lectureApp')
       promise.then(
         function () {
           $scope.currentUser = lecture.currentUser();
+   	  $scope.loggedInView = false;
       },
       function () {
         $scope.currentUser = lecture.currentUser();
